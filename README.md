@@ -1,6 +1,13 @@
 # React js Class by Lele Lester 
 
-> 
+> En este curso de 7 clases veremos todo lo básico que hay que saber de React js.
+
+---
+## Branches 
+* [intro]()
+---
+
+## Clase de Intro
 
 Primeros comandos: 
 - npm init -y
@@ -206,9 +213,33 @@ var reduce2 = map.reduce((acumulador, itemEnElQueEstoy) => {
 console.log(`resultado de Reduce 2 =`);
 console.log(reduce2)
 ```
+* *dato de color:*
+```
+// El indexOf de un array vacio es siempre -1 
+var arr = []
+console.log(arr.indexOf(1)) // -1
+```
 
 5. Retornar la sumatoria total de cable por sucursal. El output debería ser: [Centro: 6000, Garin: 750, Vicente Lopez: 450]
 
+```
+var last = inventario.reduce((acumulador, item) => {
+  if(item.tipo === 'cable'){
+    if(acumulador[item.sucursal]){
+      acumulador[item.sucursal] += item.cantidad
+    } else {
+      acumulador[item.sucursal] = item.cantidad
+    }
+  }
+  return acumulador;
+},[])
+console.log(`resultado de last =`);
+console.log(last);
+```
+- Este ejercicio tomó su tiempo. En este caso el primer if filta por aquellos items que tengan tipo cable. 
+- El segundo if pregunta si acumulador[item.sucursal] existe pero, como acumulador no tiene nada, da falso. Enconces se va al else y asigna a acumulador[item.sucursal] (que es lo mismo que decir Centro) el valor de cantidad del primer ITEM. 
+- el segundo item pregunta lo mismo pero esta vez da true por que centro SI existe en acumulador entonces suma su valor de cantidad al valor de cantidad que ya existe en acumulador. 
+- este proceso lo hace con todas las sucursales
 
 ## Branches 
 * []()
