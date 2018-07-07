@@ -4,8 +4,8 @@
 
 ---
 ## Branches 
-* [classIntro](https://github.com/puribey/ReactClassLele/tree/classIntro)
 * [classOne](https://github.com/puribey/ReactClassLele/tree/classOne)
+* [classIntro](https://github.com/puribey/ReactClassLele/tree/classIntro)
 ---
 
 ## Clase de Intro
