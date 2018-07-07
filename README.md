@@ -8,6 +8,7 @@
 ---
 
 ## Clase de Intro
+En esta clase se van a repasar algunas bases de ES6 y Javascript para poder arrancar con React sin problemas.
 
 Primeros comandos: 
 - npm init -y
@@ -241,8 +242,6 @@ console.log(last);
 - el segundo item pregunta lo mismo pero esta vez da true por que centro SI existe en acumulador entonces suma su valor de cantidad al valor de cantidad que ya existe en acumulador. 
 - este proceso lo hace con todas las sucursales
 
-## Branches 
-* []()
 
 
 
