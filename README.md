@@ -31,6 +31,7 @@ App.js
 import HelloWorld from '../src/Component/HelloWorld/HelloWorld'
 ```
 ### Function 
+- Tambien llamados stateless components 
 - Los componentes hecho de funciones no tienen un ciclo de vida
 - Se exportan sin default 
 - NO hereda nada por lo tanto no necesita el render
