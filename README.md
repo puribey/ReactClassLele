@@ -9,6 +9,7 @@
 ---
 
 ## Clase de Intro
+En esta clase se van a repasar algunas bases de ES6 y Javascript para poder arrancar con React sin problemas.
 
 Primeros comandos: 
 - npm init -y
