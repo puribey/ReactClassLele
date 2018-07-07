@@ -4,7 +4,8 @@
 
 ---
 ## Branches 
-* [intro]()
+* [classIntro](https://github.com/puribey/ReactClassLele/tree/classIntro)
+* [classOne](https://github.com/puribey/ReactClassLele/tree/classOne)
 ---
 
 ## Clase de Intro
@@ -241,8 +242,6 @@ console.log(last);
 - el segundo item pregunta lo mismo pero esta vez da true por que centro SI existe en acumulador entonces suma su valor de cantidad al valor de cantidad que ya existe en acumulador. 
 - este proceso lo hace con todas las sucursales
 
-## Branches 
-* []()
 
 
 
