@@ -5,7 +5,25 @@ import './App.css';
 import { HelloWorldFunction, Button } from './Component'
 
 class App extends Component {
+  constructor(props){
+    console.log("paso por el constructor")
+    super(props)
+    this.state = {
+      name: "",
+    }
+    this.handleInputChange = this.handleInputChange.bind(this)
+  }
+  handleInputChange(e) {
+    console.log(e) 
+    console.log(e.target.value)
+    // Cannot read property 'setState' of undefined
+    this.setState({
+      name: e.target.value
+    })
+  }
   render() {
+    const {name} = this.state
+    console.log("paso por el render")
     return (
       <div className="App">
         <header className="App-header">
@@ -18,6 +36,8 @@ class App extends Component {
         {/*<HelloWorld />*/}
         <HelloWorldFunction nombre="Puri" apellido="Bey" />
         <Button />
+        <input type="text" onChange={this.handleInputChange} />
+        <p> Hello { name } </p>
       </div>
     );
   }
