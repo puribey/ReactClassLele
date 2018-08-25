@@ -7,7 +7,57 @@
 * [classOne](https://github.com/puribey/ReactClassLele/tree/classOne)
 * [classIntro](https://github.com/puribey/ReactClassLele/tree/classIntro)
 ---
+## ClassThree
 
+```
+shouldComponentUpdate() {
+    ciclo de vida que rerenderiza segun cambios en el state
+    prevstate == nextstate ? // true
+}
+```
+### **Reasignacion de Objetos**
+```
+Object.assign({llaves vacias}, objeto que quiero copiar, {propiedad que quiero cambiar o agregar})
+
+Persona = {
+    nombre: ..,
+    apellido: ..,
+    edad: ..
+}
+Object.assign({},Persona,{dni:""})
+```
+### **Reasignacion de Arrays**
+Una manera (contact). El concat siempre arma un array nuevo
+```
+array.concat(array que quiero copiar)
+
+const arr1 = ["perro": "pepe"]
+const arr2 = []
+const arr2.concat(arr1)
+
+```
+Otra manera (spread). El spread siempre arma un array nuevo 
+```
+const arr3 = [...arr1]
+```
+IMPOTANT! NO usar ni **push**, ni **pop**, ni **splice** por que no arman arrays nuevos
+
+---
+### REDUX 
+* Single immutable state tree
+* Es un único state. NO hay multiples
+* Esta dentro de un **store** 
+* El store mantiene el state y lo muestra a toda la aplicacion 
+* El estado es read only 
+* Para cambiar el estado se utilizan las **acciones** y se definen como objeto y como constantes 
+* Las actions tienen que tener un **type** obligatorio y una **descripcion** 
+* La unica manera de modificar el state es **despachando** acciones (qué quiero hacer?)
+* Los **reducers** son funciones que modfician el state (cómo lo hago?)
+* Concepto de publisher suscriber 
+
+
+
+---
 ## ClassOne
 
 **Componentes como Clases y componentes como Funciones**
@@ -31,6 +81,7 @@ App.js
 import HelloWorld from '../src/Component/HelloWorld/HelloWorld'
 ```
 ### Function 
+- Tambien llamados stateless components 
 - Los componentes hecho de funciones no tienen un ciclo de vida
 - Se exportan sin default 
 - NO hereda nada por lo tanto no necesita el render
