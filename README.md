@@ -2,6 +2,199 @@
 
 > En este curso de 7 clases veremos todo lo básico que hay que saber de React js.
 
+--- 
+## Class Six 
+
+### Router 
+* npm i -s react-router 
+* en App.js vamos a importar **BrowserRouter as Router, Route, Link, Switch from "react-router-dom"**
+* **Exact** sera util para marcar las rutas exactas a nuestros componentes
+```
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import './App.css';
+import Users from './containers/Users';
+import Groups from './containers/Groups';
+
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <div className="wrapper">
+          <div className="nav">
+            <Link to="/users">Users</Link>
+            <Link to="/groups">Groups</Link>
+          </div>
+          <div className="main">
+            <Switch>
+              <Route extact path="/users" component={Users}/>
+              <Route extact path="/groups" component={Groups}/>
+            </Switch>
+          </div>
+        </div>
+      </Router>
+    );
+  }
+}
+
+export default App;
+
+```
+
+
+---
+## Class Five
+
+### **Connect** => Conecta el componente con el state del reducer 
+* Siempre recibe dos funciones, si una no se usa, deberá ser llamada null
+```
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Item);
+```
+
+## **mapStateToProps** => es una función que conecta las props del componente al state global. 
+* Recibe como parametro el state y crea la prop a ser usada por el componente
+* Esa prop suele adoptar el nombre del elemento del state a modificar
+```
+const mapStateToProps = state => ({
+  selectedProduct: state.selectedProduct
+});
+```
+## **mapDispatchToProps** => hace el despacho de las actions con los parametros para ser usados por el state.
+```
+const mapDispatchToProps = dispatch => ({
+  addProduct: params => dispatch(addProduct(params)),
+  removeProduct: params => dispatch(removeProduct(params))
+});
+```
+
+**EN RESUMEN ...**
+
+```
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { addProduct, removeProduct } from "../state/actions";
+
+class Item extends Component {
+  render() {
+    const { product, addProduct, removeProduct} = this.props 
+    console.log(product)
+    return (
+      <div className="item">
+        <span>{product.id}. {product.name}</span>
+        <button onClick={() => addProduct({product})}>Add</button>
+        <button onClick={() => removeProduct({product})}>Remove</button>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  selectedProduct: state.selectedProduct
+});
+const mapDispatchToProps = dispatch => ({
+  addProduct: params => dispatch(addProduct(params)),
+  removeProduct: params => dispatch(removeProduct(params))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Item);
+```
+
+---
+## Class Four 
+
+### REDUX 
+* Single immutable state tree
+* Es un único state. NO hay multiples
+* Esta dentro de un **store** 
+* El store mantiene el state y lo muestra a toda la aplicacion 
+* El estado es read only 
+* Para cambiar el estado se utilizan las **acciones** y se definen como objeto y como constantes 
+* Las actions tienen que tener un **type** obligatorio y una **descripcion** 
+* La unica manera de modificar el state es **despachando** acciones (qué quiero hacer?)
+* Los **reducers** son funciones que modfician el state (cómo lo hago?)
+* Concepto de publisher suscriber 
+
+### **Actions** => Cosas que quiero hacer 
+* Mejor usar redux-actions (npm i -s redux-actions)
+* Siempre tienen un type (siempre son strings) y pueden o no tener payload (parámetros)
+
+```
+import { createAction } from 'redux-actions'
+
+// Actions
+export const HOLA = "HOLA"
+export const CHAU = "CHAU"
+
+// Create Actions
+export const decirHola = createAction(HOLA)
+export const decirChau = createAction(CHAU)
+
+```
+### **Reducers** => Funciones puras que modifican el state 
+```
+import { handleActions } from "redux-actions"
+import * as actions from './actions'
+
+const INITIAL_STATE = {
+    mensaje: null
+}
+
+const Saludar = handleActions(
+    {
+        [actions.HOLA]: (state,action) => {
+            return {
+                mensaje: "HOLA" + action.payload
+            }
+        }
+    },
+    {
+        [actions.CHAU]: (state,action) => {
+            return {
+                mensaje: "CHAU" + action.payload
+            }
+        }
+    },
+    INITIAL_STATE
+)
+
+export default Saludar;
+
+```
+
+### **STORE** => Siempre esta en el index.js por que tiene que "hidratar" la app 
+```
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+
+import { createStore, compose } from "redux";
+import { Provider } from "react-redux";
+import MoverProductos from "./state/reducer";
+
+const middlewares = [];
+
+if (window.devToolsExtension) {
+  middlewares.push(window.devToolsExtension());
+}
+
+const store = createStore(MoverProductos, compose(...middlewares));
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
+
+```
+
+
 ---
 ## ClassThree
 
@@ -31,18 +224,6 @@ Otra manera (spread). El spread siempre arma un array nuevo
 const arr3 = [...arr1]
 ```
 IMPOTANT! NO usar ni **push**, ni **pop**, ni **splice** por que no arman arrays nuevos
-
-### REDUX 
-* Single immutable state tree
-* Es un único state. NO hay multiples
-* Esta dentro de un **store** 
-* El store mantiene el state y lo muestra a toda la aplicacion 
-* El estado es read only 
-* Para cambiar el estado se utilizan las **acciones** y se definen como objeto y como constantes 
-* Las actions tienen que tener un **type** obligatorio y una **descripcion** 
-* La unica manera de modificar el state es **despachando** acciones (qué quiero hacer?)
-* Los **reducers** son funciones que modfician el state (cómo lo hago?)
-* Concepto de publisher suscriber 
 
 ---
 ## ClassTwo
@@ -213,7 +394,6 @@ render() {
 ```
 
 --- 
----
 ## Clase de Intro
 En esta clase se van a repasar algunas bases de ES6 y Javascript para poder arrancar con React sin problemas.
 
