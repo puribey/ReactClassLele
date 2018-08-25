@@ -44,9 +44,78 @@ IMPOTANT! NO usar ni **push**, ni **pop**, ni **splice** por que no arman arrays
 * Los **reducers** son funciones que modfician el state (cómo lo hago?)
 * Concepto de publisher suscriber 
 
+---
+## ClassTwo
+
+**Binding, ciclo de vida, state, props y reusabilidad de componentes**
+
+### Binding
+
+> "El contexto de las funciones se ve cuando se llaman y no cuando se definen"
+
+Si yo llamo a una funcion en un input
+```
+<input type="text" onChange={this.handleInput}/>
+```
+* En este caso la funcion esta apuntando a input y no al componente clase. 
+```
+handleInput(e) {
+    console.log(this) // undefined
+    this.setState({ 
+        name: e.target.value
+    })
+}
+```
+* En este caso el this va a dar undifined por que el this que pusimos en el input no apunta a la clase. Entonces tenemos que encontrar la manera de unirlos en el constructor.
+* **setState**: es un metodo de react para cambiar state
+* **e.target.value**: este es un metodo que se usa en cualquier funcion ligada a un evento para agarrar el valor. 
+```
+this.handleInput = this.handleInput.bind(this)
+```
+* De esta manera hago el bind de mi funcion con mi componente clase y ahora si puedo usar el this en la funcion. 
+
+
+### Ciclo de vida
+
+
+1. **constructor**: se inicializa la base de la aplicacion, state, etc
+2. **componentWillMount**: no pasa nada
+3. **render**: se renderiza la aplicacion
+4. **componentDidMount**: Este es importante por que se hacen las llamadas a las API's o a las bases de datos. Probablemente haya un fetch ahi adentro.
+```
+componentDidMount() {
+    console.log("paso por componentDidMount");
+    let result;
+    // ACA MODIFICO STATE
+    fetch("https://randomuser.me/api/")
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(myJson) {
+        result = myJson.results;
+        console.log(result);
+      });
+    this.setState(
+      {
+        personas: result
+      },
+      () => {
+        console.log("este es mi state");
+        console.log(this.state);
+      }
+    );
+  }
+```
+5. **componentWillReceiveProps(nextProps)**: se muestran las props que se estan recibiendo del padre
+6. **shouldComponentUpdate(nextProps, nextState)**: se compara el state actual con el proximo state
+7. **componentWillUpdate(nextProps, nextState)**
+8. **render**
+9. **componentDidUpdate(prevProps, prevState)**
+10. **componentWillUnmount**: Ocurre cuando se desmonta el componente de la UI. Cuando el usuario cambia de página, el componente se desmonta y queda listo para el Garbage Collector
 
 
 ---
+
 ## ClassOne
 
 **Componentes como Clases y componentes como Funciones**
