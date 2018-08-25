@@ -3,18 +3,8 @@
 > En este curso de 7 clases veremos todo lo básico que hay que saber de React js.
 
 ---
-## Branches 
-* [classOne](https://github.com/puribey/ReactClassLele/tree/classOne)
-* [classIntro](https://github.com/puribey/ReactClassLele/tree/classIntro)
----
 ## ClassThree
 
-```
-shouldComponentUpdate() {
-    ciclo de vida que rerenderiza segun cambios en el state
-    prevstate == nextstate ? // true
-}
-```
 ### **Reasignacion de Objetos**
 ```
 Object.assign({llaves vacias}, objeto que quiero copiar, {propiedad que quiero cambiar o agregar})
@@ -42,7 +32,6 @@ const arr3 = [...arr1]
 ```
 IMPOTANT! NO usar ni **push**, ni **pop**, ni **splice** por que no arman arrays nuevos
 
----
 ### REDUX 
 * Single immutable state tree
 * Es un único state. NO hay multiples
