@@ -3,11 +3,48 @@
 > En este curso de 7 clases veremos todo lo básico que hay que saber de React js.
 
 ---
-## Branches 
-* [classOne](https://github.com/puribey/ReactClassLele/tree/classOne)
-* [classIntro](https://github.com/puribey/ReactClassLele/tree/classIntro)
----
+## ClassThree
 
+### **Reasignacion de Objetos**
+```
+Object.assign({llaves vacias}, objeto que quiero copiar, {propiedad que quiero cambiar o agregar})
+
+Persona = {
+    nombre: ..,
+    apellido: ..,
+    edad: ..
+}
+Object.assign({},Persona,{dni:""})
+```
+### **Reasignacion de Arrays**
+Una manera (contact). El concat siempre arma un array nuevo
+```
+array.concat(array que quiero copiar)
+
+const arr1 = ["perro": "pepe"]
+const arr2 = []
+const arr2.concat(arr1)
+
+```
+Otra manera (spread). El spread siempre arma un array nuevo 
+```
+const arr3 = [...arr1]
+```
+IMPOTANT! NO usar ni **push**, ni **pop**, ni **splice** por que no arman arrays nuevos
+
+### REDUX 
+* Single immutable state tree
+* Es un único state. NO hay multiples
+* Esta dentro de un **store** 
+* El store mantiene el state y lo muestra a toda la aplicacion 
+* El estado es read only 
+* Para cambiar el estado se utilizan las **acciones** y se definen como objeto y como constantes 
+* Las actions tienen que tener un **type** obligatorio y una **descripcion** 
+* La unica manera de modificar el state es **despachando** acciones (qué quiero hacer?)
+* Los **reducers** son funciones que modfician el state (cómo lo hago?)
+* Concepto de publisher suscriber 
+
+---
 ## ClassTwo
 
 **Binding, ciclo de vida, state, props y reusabilidad de componentes**
@@ -37,7 +74,7 @@ this.handleInput = this.handleInput.bind(this)
 ```
 * De esta manera hago el bind de mi funcion con mi componente clase y ahora si puedo usar el this en la funcion. 
 
----
+
 ### Ciclo de vida
 
 
